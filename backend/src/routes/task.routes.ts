@@ -31,9 +31,13 @@ router.get('/', async (_req, res) => {
     });
 
     res.json({ data: tasks });
-  } catch (err) {
+  } catch (err: any) {
     console.error('READ ALL error:', err);
-    res.status(500).json({ message: 'ไม่สามารถดึงรายการได้' });
+    res.status(500).json({
+      message: 'ไม่สามารถดึงรายการได้',
+      error: err.message,
+      code: err.code
+    });
   }
 });
 
